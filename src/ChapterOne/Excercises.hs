@@ -65,9 +65,9 @@ lookup' s = fromJust . lookup s
 interpStm :: Statement -> StateT Table IO ()
 interpStm (CompoundStm lStm rStm) = interpStm lStm  >>= (const $ interpStm rStm)
 interpStm (AssignStm s expr)      = interpExpr expr >>= (\r -> modify ((:) (s, r)))
-interpStm (PrintStm xs)           = traverse printLine xs >>= putNewLine
-    where printLine x = interpExpr x >>= liftIO . putStr . (\x -> x ++ " ") . show
-          putNewLine  = const $ liftIO (putStr "\n")
+interpStm (PrintStm xs)           = traverse printInt xs >>= newLine
+    where printInt x = interpExpr x >>= liftIO . putStr . (\x -> x ++ " ") . show
+          newLine    = const $ liftIO (putStr "\n")
 
 interpExpr :: Expression -> StateT Table IO Int
 interpExpr (OpExp lExpr Plus   rExpr) = binop (+) lExpr rExpr
