@@ -57,8 +57,6 @@ interpret statement = evalStateT (interpStm statement) []
 -- The first occurence of an id (String) is the one that will be used
 type Table = [(String, Int)]
 
-type PrintCommands = [[Int]]
-
 lookup' :: String -> Table -> Int
 lookup' s = fromJust . lookup s 
 

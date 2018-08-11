@@ -22,4 +22,3 @@ Writing interpreters without side effects (that is, assignment statements that u
 (not really?)) is a good introduction to _denotation symantics_ and _attribute grammars_, which are methods for
 describing what programming languages do. It's often a useful technique in writing compilers, too; compilers are
 also in the business of saying what programming languages do.
-
